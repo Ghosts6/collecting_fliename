@@ -9,7 +9,7 @@ in this porgram we use some cmd command like dir with options: /s /b /a-d to pri
 #include <vector>
 #include <algorithm>
 #include <filesystem>
-
+#include <cstdio>
 using namespace std;
 namespace fs = std::filesystem;
 
@@ -17,24 +17,30 @@ void sortFileNamesAndFormats(const string& path);
 
 int main() {
     string path;
-
     cout << "Enter the directory path: ";
     getline(cin, path);
-
     sortFileNamesAndFormats(path);
-
     return 0;
 }
 
 void sortFileNamesAndFormats(const string& path) {
     vector<string> arr;
-
-    for (const auto& entry : fs::directory_iterator(path)) {
-        if (entry.is_regular_file()) {
-            string filename = entry.path().filename().string();
-            arr.push_back(filename);
+    string cmd = "dir \"" + path + "\" /s /b /a-d"; 
+    FILE* pipe = _popen(cmd.c_str(), "r");
+    if (!pipe) {
+        cout << "Error: Unable to open pipe.\n";
+        return;
+    }
+    char buffer[128];
+    while (!feof(pipe)) {
+        if (fgets(buffer, 128, pipe) != nullptr) {
+            string file(buffer);
+            file.erase(remove(file.begin(), file.end(), '\n'), file.end());
+            arr.push_back(file);
         }
     }
+
+    _pclose(pipe);
 
     for (string& file : arr) {
         size_t lastDot = file.find_last_of(".");
@@ -50,6 +56,7 @@ void sortFileNamesAndFormats(const string& path) {
         cout << file << endl;
     }
 }
+
 ```
 # Second program:
 unlike first one at this porgram we use somme method and loops to print file data
