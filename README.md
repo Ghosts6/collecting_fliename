@@ -1,6 +1,6 @@
 # collecting_fliename
 Collecting file data in specific path with help of c++ :
-both program write with c++ and inclue library like iostream stirng vectore filesystem and some more,we have two diferend def main for get path from user and run porgram and  sortFileNamesAndFormats too show result
+both program write with c++ and inclue library like iostream stirng vectore filesystem and some more,we have two differend def firs we have main for get path from user and run porgram and  sortFileNamesAndFormats too show result
 # First program:
 in this porgram we use some cmd command like dir with options: /s /b /a-d to print file data
 ```cpp
@@ -59,7 +59,7 @@ void sortFileNamesAndFormats(const string& path) {
 
 ```
 # Second program:
-unlike first one at this porgram we use somme method and loops to print file data
+unlike first one at this porgram we use somme method and loops to print file data and sort the data into the file which will be create in same path
 ```cpp
 #include <iostream>
 #include <fstream>
