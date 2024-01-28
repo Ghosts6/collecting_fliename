@@ -1,4 +1,4 @@
-[!img](https://github.com/Ghosts6/Local-website/blob/main/img/Baner.png)
+![baner](https://github.com/Ghosts6/Local-website/blob/main/img/Baner.png)
 
 # collecting_fliename
 Collecting file data in specific path with help of c++ :
